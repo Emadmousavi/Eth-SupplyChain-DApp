@@ -1,0 +1,114 @@
+version: '3.7'
+services:
+  netstats:
+    hostname: netstats
+    ports:
+      - 3000:3000
+    build:
+      context: netstats
+    container_name: netstats
+    environment:
+      WS_SECRET: ${NETSTATS_SECRET}
+    networks:
+      - research
+  bootnode:
+    container_name: bootnode
+    build:
+      context: node
+    ports:
+      - 30301:30301/udp
+    command: bootnode --nodekeyhex ${BOOTNODE_KEY}
+    networks:
+      research:
+        ipv4_address: 172.3.0.111
+  node:
+    depends_on:
+      - bootnode
+    build:
+      context: node
+    container_name: node
+    ports:
+      - 8545:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db"
+      --ethstats node:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - research
+  node-miner-1:
+    depends_on:
+      - bootnode
+      - netstats
+    build:
+      context: node
+    container_name: node-miner-1
+    ports:
+      - 8546:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db,miner"
+      --mine --miner.etherbase ${ACCOUNT_1}
+      --unlock ${ACCOUNT_1} --password password.txt
+      --ethstats node-miner-1:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - research
+  node-miner-2:
+    depends_on:
+      - bootnode
+      - netstats
+    build:
+      context: node
+    container_name: node-miner-2
+    ports:
+      - 8547:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db,miner"
+      --mine --miner.etherbase ${ACCOUNT_2}
+      --unlock ${ACCOUNT_2} --password password.txt
+      --ethstats node-miner-2:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - research
+
+  node-swarm-1:
+    depends_on:
+      - bootnode
+    ports:
+      - 8500:8500
+    command: swarm
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
+      --bzzaccount ${ACCOUNT_1} --password password.txt
+      --bzznetworkid ${NETWORK_ID}
+    build:
+      context: node
+    container_name: node-swarm-1
+    networks:
+      - research
+  node-swarm-2:
+    depends_on:
+      - bootnode
+    ports:
+      - 8501:8500
+    command: swarm
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
+      --bzzaccount ${ACCOUNT_2} --password password.txt
+      --bzznetworkid ${NETWORK_ID}
+    build:
+      context: node
+    container_name: node-swarm-2
+    networks:
+      - research
+networks:
+  research:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.3.0.0/24
