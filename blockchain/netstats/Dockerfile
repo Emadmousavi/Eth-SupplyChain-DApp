@@ -1,6 +1,7 @@
-FROM node:8-alpine
+FROM timbru31/node-alpine-git
 
-RUN apk add --update git
+# RUN apk update
+# RUN apk add git
 RUN npm install -g grunt
 RUN git clone https://github.com/goerli/ethstats-server.git
 

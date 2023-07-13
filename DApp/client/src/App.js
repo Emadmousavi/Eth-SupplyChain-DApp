@@ -35,13 +35,14 @@ class App extends Component {
         const web3_provider = new Web3.providers.HttpProvider(url)
         const web3 = new Web3(web3_provider)
         const accounts = await web3.eth.getAccounts();
+        console.log("ok")
         const networkId = await web3.eth.net.getId();
         const deployedNetwork = SupplyChainContract.networks[networkId];
         const instance = new web3.eth.Contract(
           SupplyChainContract.abi,
           deployedNetwork && deployedNetwork.address,
         );
-
+        
         const mRole = localStorage.getItem("mRole");
         const tpRole = localStorage.getItem("tpRole");
         const dhRole = localStorage.getItem("dhRole");

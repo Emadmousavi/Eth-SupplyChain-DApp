@@ -17,15 +17,18 @@ module.exports = {
   networks: {
     develop: {
       host: "127.0.0.1",
-      port: 8545,
+      port: 7545,
       network_id: "*", // match any network
       websockets: true
     },
     clique: {
       host: "127.0.0.1",
-      port: 7545,
-      network_id: "1234", // match any network
-      websockets: true
+      port: 8545,
+      network_id: "33",
+      websockets: false,
+      gasPrice: 100000000000,
+      gaslimit: 12500000000000000000000000,
+      from: "0xF8DCca97540A7891E8668F2CF6F4531422b92cDF"
     }
   }
   

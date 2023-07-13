@@ -3,7 +3,7 @@ services:
   netstats:
     hostname: netstats
     ports:
-      - 3000:3000
+      - 3001:3000
     build:
       context: netstats
     container_name: netstats
@@ -34,6 +34,7 @@ services:
       --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
       --networkid ${NETWORK_ID}
       --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db"
+      --unlock ${ACCOUNT_0} --password password.txt
       --ethstats node:${NETSTATS_SECRET}@netstats:3000
     networks:
       - research
@@ -73,6 +74,26 @@ services:
       --mine --miner.etherbase ${ACCOUNT_2}
       --unlock ${ACCOUNT_2} --password password.txt
       --ethstats node-miner-2:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - research
+  
+  node-miner-3:
+    depends_on:
+      - bootnode
+      - netstats
+    build:
+      context: node
+    container_name: node-miner-3
+    ports:
+      - 8548:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db,miner"
+      --mine --miner.etherbase ${ACCOUNT_3}
+      --unlock ${ACCOUNT_3} --password password.txt
+      --ethstats node-miner-3:${NETSTATS_SECRET}@netstats:3000
     networks:
       - research
 
