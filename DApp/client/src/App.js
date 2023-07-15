@@ -35,6 +35,7 @@ class App extends Component {
         const web3_provider = new Web3.providers.HttpProvider(url)
         const web3 = new Web3(web3_provider)
         const accounts = await web3.eth.getAccounts();
+        // web3.eth.personal.unlockAccount(accounts[0], 'word', 6000000)
         console.log("ok")
         const networkId = await web3.eth.net.getId();
         const deployedNetwork = SupplyChainContract.networks[networkId];
