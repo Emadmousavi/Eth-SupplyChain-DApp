@@ -1,0 +1,30 @@
+FROM base_image:latest
+
+ARG miner_1_password
+ARG miner_1_privatekey
+
+ARG miner_2_password
+ARG miner_2_privatekey
+
+ARG node_password
+ARG node_privatekey
+
+RUN echo $miner_1_password > ~/.miner_1_accountpassword
+RUN echo $miner_1_privatekey > ~/.miner_1_privatekey
+
+RUN echo $miner_2_password > ~/.miner_2_accountpassword
+RUN echo $miner_2_privatekey > ~/.miner_2_privatekey
+
+RUN echo $node_password > ~/.node_accountpassword
+RUN echo $node_privatekey > ~/.node_privatekey
+
+ADD ./genesis.json ./genesis.json
+RUN geth init genesis.json
+
+RUN geth account import --password ~/.miner_1_accountpassword  ~/.miner_1_privatekey
+RUN geth account import --password ~/.miner_2_accountpassword  ~/.miner_2_privatekey
+RUN geth account import --password ~/.node_accountpassword  ~/.node_privatekey
+
+EXPOSE 8545
+EXPOSE 8546
+EXPOSE 30303

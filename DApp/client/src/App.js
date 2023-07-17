@@ -33,9 +33,11 @@ class App extends Component {
       try {
         const url = 'http://127.0.0.1:8545'
         const web3_provider = new Web3.providers.HttpProvider(url)
-        const web3 = new Web3(web3_provider)
+        const web3 = new Web3(window.ethereum);
+        // const web3 = new Web3(web3_provider);
         const accounts = await web3.eth.getAccounts();
-        // web3.eth.personal.unlockAccount(accounts[0], 'word', 6000000)
+        console.log("account 1",accounts[1])
+        // web3.eth.personal.unlockAccount(accounts[1], 'password')
         console.log("ok")
         const networkId = await web3.eth.net.getId();
         const deployedNetwork = SupplyChainContract.networks[networkId];

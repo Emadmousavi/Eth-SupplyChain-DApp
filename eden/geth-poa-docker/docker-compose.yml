@@ -84,7 +84,7 @@ services:
     depends_on:
       - geth-dev-miner-2
     environment:
-      - node_address=0x9f67866CB3B3E7a5Cee9E71a9905FE1A1eF37a81
+      - node_address=0x69707aAdf642117532a4Ad821c2d89C0BA45bBe3
       - miner_address=0x3590aca93338b0721966a8d0c96ebf2c4c87c544 #derived from the private key which is passed in the args
       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
       - bootnodeIp=172.25.0.101
@@ -92,9 +92,9 @@ services:
       context: ./node
       args:
         miner_privatekey: bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35
-        node_privatekey:  9120fcde0f5394ee0cc93069b7fda20d8103c65cb0fa3799f5aa60bcfeed9653
+        node_privatekey:  47412a248e8fbe947239bca6e86b0fc7bf026bd9f3a56a33cb65c04855f5eb08
         miner_password: word
-        node_password: word
+        node_password: password
     image: maibornwolff/eden:geth-dev-node
     container_name: geth-dev-node
     ports:

@@ -109,7 +109,7 @@ export default function ShipThirdParty(props) {
   
   return (
     <>
-      <div classname={classes.pageWrap}>
+      <div className={classes.pageWrap}>
         <Navbar pageTitle={"Third Party"} navItems={navItem}>
           {loading ? (
             <Loader />

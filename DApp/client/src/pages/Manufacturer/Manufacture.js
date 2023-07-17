@@ -45,6 +45,7 @@ export default function Manufacture(props) {
             await supplyChainContract.methods.manufactureProduct(manuForm.manufacturerName, manuForm.manufacturerDetails, manuForm.manufacturerLongitude, manuForm.manufacturerLatitude, manuForm.productName, parseInt(manuForm.productCode), parseInt(manuForm.productPrice), manuForm.productCategory).send({ from: roles.manufacturer, gas: 999999 })
                 // .then(console.log)
                 .on('transactionHash', function (hash) {
+                    console.log("product added, tx hash:", hash)
                     handleSetTxhash(hash);
                 });
                 setManuForm({
