@@ -27,7 +27,6 @@ module.exports = {
       network_id: "*",
       websockets: false,
       gasPrice: 100000000000,
-      // gaslimit: 12500000000000000000000000,
       from: "0x69707aAdf642117532a4Ad821c2d89C0BA45bBe3"
     }
   }
