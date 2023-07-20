@@ -40,6 +40,26 @@
     }
   },
   {
+    "name": "geth-dev-miner-3",
+    "script": "app.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "merge_logs": false,
+    "watch": true,
+    "max_restarts": 10,
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "env": {
+      "NODE_ENV": "production",
+      "RPC_HOST": "172.25.0.106",
+      "RPC_PORT": "8545",
+      "LISTENING_PORT": "30303",
+      "INSTANCE_NAME": "geth-dev-miner-3",
+      "WS_SERVER": "ws://172.25.0.136:3000",
+      "WS_SECRET": "123",
+      "VERBOSITY": 3
+    }
+  },
+  {
     "name": "geth-dev-node",
     "script": "app.js",
     "log_date_format": "YYYY-MM-DD HH:mm Z",
