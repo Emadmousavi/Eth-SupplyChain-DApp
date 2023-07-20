@@ -16,7 +16,7 @@
       "INSTANCE_NAME": "geth-dev-miner-1",
       "WS_SERVER": "ws://172.25.0.136:3000",
       "WS_SECRET": "123",
-      "VERBOSITY": 3
+      "VERBOSITY": 1
     }
   },
   {
@@ -36,7 +36,7 @@
       "INSTANCE_NAME": "geth-dev-miner-2",
       "WS_SERVER": "ws://172.25.0.136:3000",
       "WS_SECRET": "123",
-      "VERBOSITY": 3
+      "VERBOSITY": 1
     }
   },
   {
@@ -56,7 +56,7 @@
       "INSTANCE_NAME": "geth-dev-miner-3",
       "WS_SERVER": "ws://172.25.0.136:3000",
       "WS_SECRET": "123",
-      "VERBOSITY": 3
+      "VERBOSITY": 1
     }
   },
   {
@@ -76,7 +76,7 @@
       "INSTANCE_NAME": "geth-dev-node",
       "WS_SERVER": "ws://172.25.0.136:3000",
       "WS_SECRET": "123",
-      "VERBOSITY": 3
+      "VERBOSITY": 1
     }
   }
 ]
