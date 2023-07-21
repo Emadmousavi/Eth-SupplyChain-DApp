@@ -3,16 +3,13 @@ version: "3"
 services:
   geth-bootnode:
     hostname: geth-bootnode
-    environment:
-      - nodekeyhex=08f0e1dee5c1b4645f3331a566009e41a4514b6cd28656d63d0449ecf812812b #Needs to be fix, so that the miners know the resulting enode id
-      - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c # enodeId
-      - bootnodeIp=172.25.0.101
-    build: ./bootnode
-    image: geth-bootnode
+    build: ./node
+    image: blockchain_node
     container_name: geth-bootnode
     ports:
       - 30301:30301/udp
       - 30303:30303/udp
+    command: bootnode -nodekeyhex ${BOOTNODE_NODE_KEY_HEX} -addr ${BOOT_NODE_IP}:30301 -verbosity 4
     networks:
       chainnet:
         ipv4_address: 172.25.0.101 # The miners need to know the IP address later on
@@ -38,18 +35,19 @@ services:
       - chaindata-1:/root/.ethereum
     env_file:
       - .env
-    command: geth --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
+    command: geth 
+      --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
       --nodekeyhex ${MINER_1_NODEKEYHEX} 
-      --networkid "6660001" --verbosity 4  
-      --http --http.addr "0.0.0.0" --http.port 8545 
-      --http.api "eth,web3,net,admin,debug,miner,personal" 
-      --http.corsdomain "*" 
-      --ws --ws.addr "0.0.0.0" --ws.port 8546 
-      --ws.api "eth,web3,net,admin,debug,miner,personal" 
-      --ws.origins "*" 
-      --syncmode full --mine --miner.gasprice 0 --miner.etherbase ${MINER_1_ADDRESS} 
+      --networkid ${NETWORK_ID} --verbosity 4 
+      --rpc --rpcaddr 0.0.0.0 --rpcport 8545 
+      --rpccorsdomain "*" 
+      --rpcapi "eth,web3,net,admin,db,miner"
+      --ws --wsaddr "0.0.0.0" --wsport 8546 
+      --wsapi "eth,web3,net,admin,debug,miner,personal" 
+      --wsorigins "*" 
+      --syncmode full
+      --mine --miner.etherbase ${MINER_1_ADDRESS} --miner.gasprice 0
       --unlock ${MINER_1_ADDRESS} --password ~/.password 
-      --allow-insecure-unlock
     networks:
       chainnet:
         ipv4_address: 172.25.0.102 # The monitor needs to know this address
@@ -75,18 +73,19 @@ services:
       - chaindata-2:/root/.ethereum
     env_file:
       - .env
-    command: geth --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
+    command: geth 
+      --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
       --nodekeyhex ${MINER_2_NODEKEYHEX} 
-      --networkid "6660001" --verbosity 4  
-      --http --http.addr "0.0.0.0" --http.port 8545 
-      --http.api "eth,web3,net,admin,debug,miner,personal" 
-      --http.corsdomain "*" 
-      --ws --ws.addr "0.0.0.0" --ws.port 8546 
-      --ws.api "eth,web3,net,admin,debug,miner,personal" 
-      --ws.origins "*" 
-      --syncmode full --mine --miner.gasprice 0 --miner.etherbase ${MINER_2_ADDRESS} 
+      --networkid ${NETWORK_ID} --verbosity 4 
+      --rpc --rpcaddr 0.0.0.0 --rpcport 8545 
+      --rpccorsdomain "*" 
+      --rpcapi "eth,web3,net,admin,db,miner"
+      --ws --wsaddr "0.0.0.0" --wsport 8546 
+      --wsapi "eth,web3,net,admin,debug,miner,personal" 
+      --wsorigins "*" 
+      --syncmode full
+      --mine --miner.etherbase ${MINER_2_ADDRESS} --miner.gasprice 0
       --unlock ${MINER_2_ADDRESS} --password ~/.password 
-      --allow-insecure-unlock
     networks:
       chainnet:
         ipv4_address: 172.25.0.104
@@ -112,18 +111,19 @@ services:
       - chaindata-3:/root/.ethereum
     env_file:
       - .env
-    command: geth --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
+    command: geth 
+      --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
       --nodekeyhex ${MINER_3_NODEKEYHEX} 
-      --networkid "6660001" --verbosity 4  
-      --http --http.addr "0.0.0.0" --http.port 8545 
-      --http.api "eth,web3,net,admin,debug,miner,personal" 
-      --http.corsdomain "*" 
-      --ws --ws.addr "0.0.0.0" --ws.port 8546 
-      --ws.api "eth,web3,net,admin,debug,miner,personal" 
-      --ws.origins "*" 
-      --syncmode full --mine --miner.gasprice 0 --miner.etherbase ${MINER_3_ADDRESS} 
+      --networkid ${NETWORK_ID} --verbosity 4 
+      --rpc --rpcaddr 0.0.0.0 --rpcport 8545 
+      --rpccorsdomain "*" 
+      --rpcapi "eth,web3,net,admin,db,miner"
+      --ws --wsaddr "0.0.0.0" --wsport 8546 
+      --wsapi "eth,web3,net,admin,debug,miner,personal" 
+      --wsorigins "*" 
+      --syncmode full
+      --mine --miner.etherbase ${MINER_3_ADDRESS} --miner.gasprice 0
       --unlock ${MINER_3_ADDRESS} --password ~/.password 
-      --allow-insecure-unlock
     networks:
       chainnet:
         ipv4_address: 172.25.0.106
@@ -133,15 +133,8 @@ services:
     hostname: geth-dev-node
     depends_on:
       - geth-dev-miner-2
-    environment:
-      - address=0x69707aAdf642117532a4Ad821c2d89C0BA45bBe3
-      - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c #derived from the nodekeyhex of the bootnode
-      - bootnodeIp=172.25.0.101
     build:
       context: ./node
-      args:
-        privatekey:  47412a248e8fbe947239bca6e86b0fc7bf026bd9f3a56a33cb65c04855f5eb08
-        password: password
     container_name: geth-dev-node
     ports:
       - 8545:8545
@@ -156,55 +149,60 @@ services:
       - chaindata-4:/root/.ethereum
     env_file:
       - .env
-    command: geth --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
+    command: geth 
+      --bootnodes "enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301" 
       --nodekeyhex ${NODE_NODEKEYHEX} 
-      --networkid "6660001" --verbosity 4 
-      --http --http.addr "0.0.0.0" --http.port 8545 
-      --http.api "eth,web3,net,admin,debug,miner,personal" 
-      --http.corsdomain "*" --ws --ws.addr "0.0.0.0" --ws.port 8546 
-      --ws.api "eth,web3,net,admin,debug,miner,personal" 
-      --ws.origins "*" 
-      --syncmode full 
-      --gcmode archive 
+      --networkid ${NETWORK_ID} --verbosity 4
+      --rpc --rpcaddr 0.0.0.0 --rpcport 8545 
+      --rpccorsdomain "*" 
+      --rpcapi "eth,web3,net,admin,db,miner"
+      --ws --wsaddr "0.0.0.0" --wsport 8546
+      --wsapi "eth,web3,net,admin,debug,miner,personal" 
+      --wsorigins "*" 
+      --syncmode full
       --unlock ${NODE_ADDRESS} 
       --password ~/.password 
-      --allow-insecure-unlock
+      --gcmode archive 
+
     networks:
       chainnet:
         ipv4_address: 172.25.0.110
 
-  # node-swarm-1:
-  #   depends_on:
-  #     - geth-bootnode
-  #   ports:
-  #     - 8500:8500
-  #   command: swarm
-  #     --bootnodes enode://${BOOTNODE_ID}@${BOOTNODE_IP}:30301
-  #     --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
-  #     --bzzaccount ${NODE_ADDRESS} --password ~/.password
-  #     --bzznetworkid ${NETWORK_ID}
-  #   build:
-  #     context: node
-  #   container_name: node-swarm-1
-  #   networks:
-  #     chainnet:
-  #       ipv4_address: 172.25.0.210
+  node-swarm-1:
+    depends_on:
+      - geth-bootnode
+    ports:
+      - 8500:8500
+    command: swarm
+      --bootnodes enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301
+      --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
+      --bzzaccount ${NODE_ADDRESS} --password ~/.password
+      --bzznetworkid ${NETWORK_ID}
+    build:
+      context: node
+    container_name: node-swarm-1
+    image: blockchain_node
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.210
 
-  # node-swarm-2:
-  #   depends_on:
-  #     - bootnode
-  #   ports:
-  #     - 8501:8500
-  #   command: swarm
-  #     --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
-  #     --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
-  #     --bzzaccount ${ACCOUNT_2} --password password.txt
-  #     --bzznetworkid ${NETWORK_ID}
-  #   build:
-  #     context: node
-  #   container_name: node-swarm-2
-  #   networks:
-  #     - research
+  node-swarm-2:
+    depends_on:
+      - geth-bootnode
+    ports:
+      - 8501:8500
+    command: swarm
+      --bootnodes enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301
+      --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
+      --bzzaccount ${NODE_ADDRESS} --password ~/.password
+      --bzznetworkid ${NETWORK_ID}
+    build:
+      context: node
+    container_name: node-swarm-2
+    image: blockchain_node
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.211
 
   lite-explorer:
     links:
@@ -214,8 +212,8 @@ services:
       - geth-dev-node
     image: alethio/ethereum-lite-explorer
     container_name: lite-explorer
-    volumes:
-      - chaindata-4:/root/.ethereum  
+    # volumes:
+    #   - chaindata-4:/root/.ethereum  
     environment:
       - APP_NODE_URL=http://localhost:8545
       - ETHEREUM_DATADIR=/root/.ethereum
