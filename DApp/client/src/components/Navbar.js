@@ -184,14 +184,14 @@ export default function PersistentDrawerLeft({ pageTitle,navItems, children }) {
               justifyContent: "center",
               alignItems: "center",
               fontWeight: 500,
-              fontSize: 17,
+              fontSize: 15,
               borderTop: "1px solid #44a",
             }}
           >
-            By Team Akatsuki &nbsp;&nbsp;
+            By Seyed Emad Mousavi &nbsp;&nbsp;
             <a
               style={{ textDecoration: "none" }}
-              href="https://github.com/rishav4101/eth-supplychain-dapp"
+              href="https://github.com/Emadmousavi/Eth-SupplyChain-DApp"
             >
               <GitHubIcon style={{ color: "#fff" }} />
             </a>
