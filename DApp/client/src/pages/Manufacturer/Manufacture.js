@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useRef, useState} from "react";
+import axios from 'axios';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useRole } from "../../context/RoleDataContext";
@@ -13,6 +14,11 @@ export default function Manufacture(props) {
     const { roles } = useRole();
     const [loading, setLoading] = React.useState(false);
     const [fvalid, setfvalid] = React.useState(false);
+
+    const fileInputRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadedCID, setUploadedCID] = useState(null);
+
     const navItem = [
         ["Add Product", "/manufacturer/manufacture"],
         ["Ship Product", "/manufacturer/ship"],
@@ -30,6 +36,52 @@ export default function Manufacture(props) {
         productCategory: "",
     });
 
+    const handleFileUpload = async (event) => {
+        try {
+            const file = event.target.files[0]
+            console.log("selectedFile: ", file)
+            const uploadUrl = 'http://127.0.0.1:8500/bzz:/';
+
+            const response = await axios.post(uploadUrl, file, {
+              headers: {
+                'Content-Type': 'application/octet-stream',
+              },
+            }).then((cid) => {
+              console.log("cid: ", cid.data)
+              setUploadedCID(cid.data);
+            });
+
+        } catch (error) {
+          console.error('Error uploading file:', error);
+        }
+
+    };
+
+    const handleFileUplo = async () => {
+        try {
+          const formData = new FormData();
+          formData.append('file', selectedFile);
+          console.log("selectedFile: ",selectedFile)
+    
+          // Replace the following URL with your Swarm node's HTTP API endpoint
+          const uploadUrl = 'http://127.0.0.1:8500/bzz:/';
+    
+          const response = await axios.post(uploadUrl, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }).then((cid) => {
+            console.log("cid: ", cid)
+          });
+
+          const cid = response.headers.location;
+          setUploadedCID(cid);
+          alert('File uploaded successfully! CID: ' + cid);
+        } catch (error) {
+          console.error('Error uploading file:', error);
+        }
+    };
+
     const handleChangeManufacturerForm = async (e) => {
         setManuForm({
             ...manuForm,
@@ -42,7 +94,7 @@ export default function Manufacture(props) {
         
         if (manuForm.manufacturerName !== "" && manuForm.manufacturerDetails !== "" && manuForm.manufacturerLongitude !== "" && manuForm.manufacturerLatitude !== "" && manuForm.productName !== "" && manuForm.productCode !== 0 && manuForm.productPrice !== 0 && manuForm.productCategory !== "") {
             setfvalid(false);
-            await supplyChainContract.methods.manufactureProduct(manuForm.manufacturerName, manuForm.manufacturerDetails, manuForm.manufacturerLongitude, manuForm.manufacturerLatitude, manuForm.productName, parseInt(manuForm.productCode), parseInt(manuForm.productPrice), manuForm.productCategory).send({ from: roles.manufacturer, gas: 999999 })
+            await supplyChainContract.methods.manufactureProduct(manuForm.manufacturerName, manuForm.manufacturerDetails, manuForm.manufacturerLongitude, manuForm.manufacturerLatitude, manuForm.productName, parseInt(manuForm.productCode), parseInt(manuForm.productPrice), manuForm.productCategory, uploadedCID).send({ from: roles.manufacturer, gas: 999999 })
                 // .then(console.log)
                 .on('transactionHash', function (hash) {
                     console.log("product added, tx hash:", hash)
@@ -59,6 +111,7 @@ export default function Manufacture(props) {
                     productPrice: 0,
                     productCategory: "",
                 })
+                setUploadedCID("")
         } else {
             setfvalid(true);
         }
@@ -191,6 +244,53 @@ export default function Manufacture(props) {
                                         style={{ width: "100%" }}
                                     />
                                 </Grid>
+                                <Grid item xs={6}>
+                                <TextField
+                                        name="Attachment"
+                                        variant="outlined"
+                                        value="Attachment"
+                                        label="Attachment"
+                                        onChange={handleChangeManufacturerForm}
+                                        style={{ width: "100%" }}
+                                        InputProps={{
+                                            readOnly: true,
+                                          }}
+                                    />
+                                </Grid>
+                                <Grid item xs={6} style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <input
+                                        id="file-input"
+                                        type="file"
+                                        ref={fileInputRef}
+                                        style={{ display: 'none' }} // Hide the file input
+                                        onChange={handleFileUpload}
+                                    />
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large" // Set the button size to large
+                                        style={{ width: '100%', cursor: 'pointer' }} // Additional styling
+                                        onClick={() => {
+                                            fileInputRef.current.click(); // Trigger the hidden file input
+                                        }}
+                                    >
+                                        Upload File
+                                    </Button>
+                                </Grid>
+                                {/* Display the CID if available */}
+                                {uploadedCID && (
+                                  <Grid item xs={12}>
+                                    <TextField
+                                      variant="outlined"
+                                      value={uploadedCID}
+                                      label="CID"
+                                      style={{ width: '100%' }}
+                                      InputProps={{
+                                        readOnly: true,
+                                      }}
+                                    />
+                                  </Grid>
+                                )}
                             </Grid>
                             <br />
                             <p><b style={{ color: "red" }}>{fvalid ? "Please enter all data" : ""}</b></p>

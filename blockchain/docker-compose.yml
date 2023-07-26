@@ -194,7 +194,7 @@ services:
     command: swarm
       --bootnodes enode://${BOOT_NODE_ID}@${BOOT_NODE_IP}:30301
       --bzzapi 0.0.0.0 --corsdomain "*" --httpaddr 0.0.0.0
-      --bzzaccount ${NODE_ADDRESS} --password ~/.password
+      --bzzaccount ${MINER_1_ADDRESS} --password ~/.password
       --bzznetworkid ${NETWORK_ID}
     build:
       context: node

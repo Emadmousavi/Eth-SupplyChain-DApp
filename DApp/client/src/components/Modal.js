@@ -117,6 +117,11 @@ export default function ProductModal({
                     <div className={classes.dCol2}>{prod[1][4]}</div>
                   </div>
                   <div className={classes.dRow}>
+                    <div className={classes.dCol1}> Product Attachment CID: </div>
+                    <div className={classes.dCol2}>{prod[1][8]}</div>
+                  </div>
+
+                  <div className={classes.dRow}>
                     <div className={classes.dCol1}>Product State: </div>{" "}
                     <div className={classes.dCol2}>{prod[1][5]}</div>
                   </div>
