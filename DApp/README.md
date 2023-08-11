@@ -57,7 +57,7 @@ Also it leads to an increase in the transparency and helps to build an efficient
 ### Architecture
 The smart contract is being written with Solidity which is then compiled, migrated and deployed using Truffle.js on the local blockchain network created using docker-compose(geth nodes).The frontend uses Web3.js to communicate with the smart contract and local blockchain network and is written using React.js framework for better component and state lifecycle management.The requests from user are forwarded to frontend through Nginx(load balancer) and Express.js for dynamic routing.
 <p align="centre">  
-    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/images/architecturefinal.png?raw=true" >  
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/architecturefinal.png?raw=true" >  
 </p>
 
 ## Flow
