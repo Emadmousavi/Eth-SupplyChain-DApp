@@ -102,12 +102,6 @@ The smart contract is being written with Solidity which is then compiled, migrat
 
 ## Contract Diagrams
 ### Activity Diagram
-The overall flow of the project is described as follows.
-<p align="centre">
-  <a>
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/activitydiagram.png?raw=true" >
-  </a>
-</p>
 <h3> Sequence Diagram</h3>
 The flow of the functions in the smart contracts.
 <p align="centre">
@@ -173,8 +167,6 @@ The app gets hosted by default at port 3000.
 
 
 
-## License
-This project uses an [MIT](https://opensource.org/licenses/MIT) license.
 ## Documentation to help with Solidity
 https://docs.soliditylang.org/en/v0.8.4/
 ## Documentation to help with React
