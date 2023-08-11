@@ -41,7 +41,6 @@
   <a >
     <img src="https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg">
   </a>
-  <a href="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/issues"><img src="https://img.shields.io/github/issues/rishav4101/eth-supplychain-dapp.svg"></a>
 </p>
 
 <p align="center">
