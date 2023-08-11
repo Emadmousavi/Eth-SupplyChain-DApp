@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a><img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/logo.png" width="200"></a>
+  <a><img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/logo.png" width="200"></a>
   <br>  
   Supply-Chain-Dapp
   <br>
@@ -9,29 +9,29 @@
 <p align="center">
   
   <a href="https://github.com/trufflesuite/ganache-cli">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/ganachetrans.png" width="90">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/ganachetrans.png" width="90">
   </a>
   <a href="https://soliditylang.org/">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/Solidity.svg" width="80">       
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/Solidity.svg" width="80">       
   </a>
-  <a href="https://reactjs.org/"><img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/react.png" width="80"></a>
+  <a href="https://reactjs.org/"><img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/react.png" width="80"></a>
   
   <a href="https://www.trufflesuite.com/">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/trufflenew.png" width="50">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/trufflenew.png" width="50">
   </a>
    &nbsp;&nbsp;&nbsp;
   <a href="https://www.npmjs.com/package/web3">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/web3.jpg" width="60">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/web3.jpg" width="60">
   </a>
   
   <a href="https://material-ui.com/">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/mat.png" width="60">       
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/mat.png" width="60">       
   </a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://expressjs.com/"><img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/express.svg" width="50"></a>
+  <a href="https://expressjs.com/"><img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/express.svg" width="50"></a>
   &nbsp;&nbsp;
   <a href="https://www.nginx.com/">
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/nginx.png" width="80">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/nginx.png" width="80">
   </a>
 </p>
 
@@ -40,13 +40,8 @@
 <p align="center">
   <a >
     <img src="https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg">
-       
   </a>
-  <a href="https://github.com/rishav4101/eth-supplychain-dapp/issues"><img src="https://img.shields.io/github/issues/rishav4101/eth-supplychain-dapp.svg"></a>
-  
-  <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg">
-  </a>
+  <a href="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/issues"><img src="https://img.shields.io/github/issues/rishav4101/eth-supplychain-dapp.svg"></a>
 </p>
 
 <p align="center">
@@ -65,12 +60,12 @@ Also it leads to an increase in the transparency and helps to build an efficient
 ## Architecture
 The smart contract is being written with Solidity which is then compiled, migrated and deployed using Truffle.js on the local blockchain network created using Ganache-cli.The frontend uses Web3.js to communicate with the smart contract and local blockchain network and is written using React.js framework for better component and state lifecycle management.The requests from user are forwarded to frontend through Nginx(load balancer) and Express.js for dynamic routing.
 <p align="centre">  
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/architecturefinal.png?raw=true" >  
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/images/architecturefinal.png?raw=true" >  
 </p>
 
 ## Flow
 <p align="centre">  
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/flow.png" width="300">  
+    <img src=https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/flow.png" width="300">  
 </p>
 
 ## Working
@@ -105,14 +100,14 @@ The smart contract is being written with Solidity which is then compiled, migrat
 The flow of the functions in the smart contracts.
 <p align="centre">
   <a>
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/sequencediagram.png?raw=true" width="1000">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/sequencediagram.png?raw=true" width="1000">
   </a>
 </p>
 <h3> Data Flow Diagram </h3>
 The entire structure of the code.
 <p align="centre">
   <a>
-    <img src="https://github.com/rishav4101/eth-supplychain-dapp/blob/main/images/dataflow.png?raw=true">
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/dataflow.png?raw=true">
   </a>
 </p>
 
@@ -150,5 +145,3 @@ https://docs.soliditylang.org/en/v0.8.4/
 https://reactjs.org/docs/getting-started.html
 ## Documentation to help with Truffle
 https://www.trufflesuite.com/docs/truffle/reference/configuration
-## Documentation to help with Ganache-cli
-https://www.trufflesuite.com/docs/ganache/overview
