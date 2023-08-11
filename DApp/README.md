@@ -51,7 +51,7 @@
   <a href="#installation-and-setup">Installation and Setup</a> •
 </p>
 
-### Description
+## Description
 Supply chain is always hard to manage and requires a lot of admistrative machinery. However, when managed with smart contracts using blockchain, a lot of the paperwork is reduced.
 Also it leads to an increase in the transparency and helps to build an efficient Root of Trust. Supply-chain-dapp is such an implementation of a supply chain management system which uses blockchain to ensure a transparent and secure transfer of product from the manufacturer to the customer via the online e-commerce websites. 
 ### Architecture
@@ -60,12 +60,12 @@ The smart contract is being written with Solidity which is then compiled, migrat
     <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/images/architecturefinal.png?raw=true" >  
 </p>
 
-### Flow
+## Flow
 <p align="centre">  
     <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/flow.png" width="300">  
 </p>
 
-### Working
+## Working
 <img src="https://user-images.githubusercontent.com/55195287/124394128-9646a600-dd1b-11eb-8bf1-233320762f1c.png" />
 <img src="https://user-images.githubusercontent.com/55195287/124394171-d4dc6080-dd1b-11eb-87b2-127daa32481a.png" />
 
@@ -92,8 +92,8 @@ The smart contract is being written with Solidity which is then compiled, migrat
 </p>
 
 
-### Contract Diagrams
-<h4> Sequence Diagram</h4>
+## Contract Diagrams
+<h3> Sequence Diagram</h3>
 The flow of the functions in the smart contracts.
 <p align="centre">
   <a>
@@ -108,25 +108,25 @@ The entire structure of the code.
   </a>
 </p>
 
-### Installation and Setup
+## Installation and Setup
 Prerequisites : `npm, git, docker`
 
-#### Clone the repository 
+### Clone the repository 
 ```Bash
 git clone https://github.com/Emadmousavi/Eth-SupplyChain-DApp.git && cd Eth-SupplyChain-DApp
 ```
-#### bootstrap blockchain
+### bootstrap blockchain
 ```
 cd blockchain && docker-compose up -d
 ```
 
-#### bootstrap DApp
+### bootstrap DApp
 open second terminal and do following
 ```Bash
 cd DApp && cd client && npm install && npm start
 ```
 
-#### Migrate the contracts
+### Migrate the contracts
 open third terminal and cd in client folder
 ```Bash
 truffle migrate --network=develop --reset
@@ -136,15 +136,15 @@ The DApp gets hosted by default at port 3000.
 
 
 
-### Documentation to help with Solidity
+## Documentation to help with Solidity
 https://docs.soliditylang.org/en/v0.8.4/
-### Documentation to help with React
+## Documentation to help with React
 https://reactjs.org/docs/getting-started.html
-### Documentation to help with Truffle
+## Documentation to help with Truffle
 https://www.trufflesuite.com/docs/truffle/reference/configuration
 
-<br>
-<br>
+<br/>
+<br/>
 
 
 
