@@ -93,7 +93,7 @@ The smart contract is being written with Solidity which is then compiled, migrat
 
 
 ### Contract Diagrams
-<h3> Sequence Diagram</h3>
+<h4> Sequence Diagram</h4>
 The flow of the functions in the smart contracts.
 <p align="centre">
   <a>
@@ -142,6 +142,11 @@ https://docs.soliditylang.org/en/v0.8.4/
 https://reactjs.org/docs/getting-started.html
 ### Documentation to help with Truffle
 https://www.trufflesuite.com/docs/truffle/reference/configuration
+
+<br>
+<br>
+
+
 
 # blockchain
 ## Local PoA Ethereum Network
