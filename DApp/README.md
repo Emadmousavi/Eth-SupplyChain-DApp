@@ -65,7 +65,7 @@ The smart contract is being written with Solidity which is then compiled, migrat
 
 ## Flow
 <p align="centre">  
-    <img src=https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/flow.png" width="300">  
+    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/flow.png" width="300">  
 </p>
 
 ## Working
