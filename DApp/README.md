@@ -8,9 +8,6 @@
 
 <p align="center">
   
-  <a href="https://github.com/trufflesuite/ganache-cli">
-    <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/ganachetrans.png" width="90">
-  </a>
   <a href="https://soliditylang.org/">
     <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/Solidity.svg" width="80">       
   </a>
@@ -56,7 +53,7 @@
 Supply chain is always hard to manage and requires a lot of admistrative machinery. However, when managed with smart contracts using blockchain, a lot of the paperwork is reduced.
 Also it leads to an increase in the transparency and helps to build an efficient Root of Trust. Supply-chain-dapp is such an implementation of a supply chain management system which uses blockchain to ensure a transparent and secure transfer of product from the manufacturer to the customer via the online e-commerce websites. 
 ## Architecture
-The smart contract is being written with Solidity which is then compiled, migrated and deployed using Truffle.js on the local blockchain network created using Ganache-cli.The frontend uses Web3.js to communicate with the smart contract and local blockchain network and is written using React.js framework for better component and state lifecycle management.The requests from user are forwarded to frontend through Nginx(load balancer) and Express.js for dynamic routing.
+The smart contract is being written with Solidity which is then compiled, migrated and deployed using Truffle.js on the local blockchain network created using docker-compose(geth nodes).The frontend uses Web3.js to communicate with the smart contract and local blockchain network and is written using React.js framework for better component and state lifecycle management.The requests from user are forwarded to frontend through Nginx(load balancer) and Express.js for dynamic routing.
 <p align="centre">  
     <img src="https://github.com/Emadmousavi/Eth-SupplyChain-DApp/blob/main/DApp/images/images/architecturefinal.png?raw=true" >  
 </p>
